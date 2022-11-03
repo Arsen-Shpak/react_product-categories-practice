@@ -8,6 +8,7 @@ type Props = {
   query: string;
   changeQuery: (event: React.ChangeEvent<HTMLInputElement>) => void;
   resetQuery: () => void;
+  reset: () => void;
 };
 export const Users: React.FC<Props> = ({
   users,
@@ -15,6 +16,7 @@ export const Users: React.FC<Props> = ({
   query,
   changeQuery,
   resetQuery,
+  reset,
 }) => {
   const [selectedUser, setSelectedUser] = useState('all');
 
@@ -27,7 +29,10 @@ export const Users: React.FC<Props> = ({
             data-cy="FilterAllUsers"
             href="#/"
             className={cn({ 'is-active': selectedUser === 'all' })}
-            onClick={() => setSelectedUser('all')}
+            onClick={() => {
+              reset();
+              setSelectedUser('all');
+            }}
           >
             All
           </a>
@@ -56,7 +61,7 @@ export const Users: React.FC<Props> = ({
               className="input"
               placeholder="Search"
               value={query}
-              onChange={event => {
+              onChange={(event) => {
                 changeQuery(event);
               }}
             />

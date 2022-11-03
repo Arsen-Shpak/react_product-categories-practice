@@ -45,6 +45,8 @@ export const App: React.FC = () => {
     setQuery('');
   };
 
+  const resetProducts = () => setVIsibleProducts(productWithUserWithCategories);
+
   const filteredByname = visibleProducts.filter(product => (
     product.name.toLowerCase().includes(query.toLowerCase())
   ));
@@ -60,6 +62,7 @@ export const App: React.FC = () => {
           query={query}
           changeQuery={changeQuery}
           resetQuery={resetQuery}
+          reset={resetProducts}
         />
 
         <div className="box table-container">
